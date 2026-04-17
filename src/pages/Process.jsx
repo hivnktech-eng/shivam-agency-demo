@@ -1,10 +1,14 @@
 import React from 'react';
 import { motion as Motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import { processSteps } from '../data/mockData';
 import './Process.css';
 
 const Process = () => {
+  const navigate = useNavigate();
+
   return (
     <PageTransition>
       <div className="process-page">
@@ -56,7 +60,9 @@ const Process = () => {
           <div className="container text-center">
             <h2 className="section-title">Systems don't sleep.</h2>
             <p className="section-desc">Unlike campaign-based marketing, a structural system works 24/7 to support your growth.</p>
-            <button className="btn btn-primary">Implement Your Sutra</button>
+            <button className="btn btn-primary" onClick={() => navigate('/contact')}>
+              Implement Your Sutra <ArrowRight size={16} />
+            </button>
           </div>
         </section>
       </div>

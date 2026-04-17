@@ -41,6 +41,8 @@ body {
   pointer-events: none;
   z-index: 10000;
   mix-blend-mode: difference;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 @media (max-width: 768px) {

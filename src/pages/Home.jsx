@@ -1,11 +1,14 @@
 import React from 'react';
 import { motion as Motion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 import { agencyData, caseStudies } from '../data/mockData';
 import './Home.css';
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -44,12 +47,16 @@ const Home = () => {
                 Your business isn't slow.<br />
                 <span>It's unoptimized.</span>
               </Motion.h1>
-              <Motion.p variants={itemVariants} className="section-desc">
+              <Motion.p variants={itemVariants} className="section-desc hero-desc">
                 {agencyData.description}
               </Motion.p>
               <Motion.div variants={itemVariants} className="hero-actions">
-                <button className="btn btn-primary">Start the Diagnostic</button>
-                <button className="btn btn-outline">Our Philosophy</button>
+                <button className="btn btn-primary" onClick={() => navigate('/contact')}>
+                  Start the Diagnostic <ArrowRight size={16} />
+                </button>
+                <button className="btn btn-outline" onClick={() => navigate('/process')}>
+                  Our Philosophy
+                </button>
               </Motion.div>
             </Motion.div>
           </div>
@@ -97,7 +104,7 @@ const Home = () => {
                 <span className="section-label">Outcomes</span>
                 <h2 className="section-title">Data-backed scaling.</h2>
               </div>
-              <button className="btn btn-outline">View All Work</button>
+              <Link to="/portfolio" className="btn btn-outline">View All Work</Link>
             </div>
             
             <div className="case-grid">
@@ -108,6 +115,7 @@ const Home = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   className="case-card"
+                  onClick={() => navigate('/portfolio')}
                 >
                   <div className="case-image">
                     <img src={study.image} alt={study.title} />
@@ -135,7 +143,9 @@ const Home = () => {
           <div className="container text-center">
             <h2 className="section-title">Ready to find the root cause?</h2>
             <p className="section-desc">Our diagnostic framework takes 48 hours to identify the structural gaps in your business.</p>
-            <button className="btn btn-primary">Book a Strategy Session <ArrowRight size={18} /></button>
+            <button className="btn btn-primary" onClick={() => navigate('/contact')}>
+              Book a Strategy Session <ArrowRight size={18} />
+            </button>
           </div>
         </section>
       </div>

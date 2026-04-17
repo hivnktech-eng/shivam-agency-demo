@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion as Motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import PageTransition from './components/PageTransition';
 import Home from './pages/Home';
@@ -11,23 +11,40 @@ import CMS from './pages/CMS';
 
 function App() {
   const location = useLocation();
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const cursorRef = useRef(null);
+  const cursorPos = useRef({ x: 0, y: 0 });
+  const targetPos = useRef({ x: 0, y: 0 });
+  const rafId = useRef(null);
 
   useEffect(() => {
+    const cursor = cursorRef.current;
+    if (!cursor) return;
+
     const handleMouseMove = (e) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      targetPos.current = { x: e.clientX, y: e.clientY };
     };
+
+    const lerp = (start, end, factor) => start + (end - start) * factor;
+
+    const animate = () => {
+      cursorPos.current.x = lerp(cursorPos.current.x, targetPos.current.x, 0.15);
+      cursorPos.current.y = lerp(cursorPos.current.y, targetPos.current.y, 0.15);
+      cursor.style.transform = `translate3d(${cursorPos.current.x - 10}px, ${cursorPos.current.y - 10}px, 0)`;
+      rafId.current = requestAnimationFrame(animate);
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    rafId.current = requestAnimationFrame(animate);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+    };
   }, []);
 
   return (
     <>
-      <Motion.div 
-        className="custom-cursor"
-        animate={{ x: mousePos.x - 10, y: mousePos.y - 10 }}
-        transition={{ type: 'spring', damping: 25, stiffness: 450, mass: 0.5 }}
-      />
+      <div ref={cursorRef} className="custom-cursor" />
       <Navbar />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>

@@ -1,10 +1,14 @@
 import React from 'react';
 import { motion as Motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import { caseStudies } from '../data/mockData';
 import './Portfolio.css';
 
 const Portfolio = () => {
+  const navigate = useNavigate();
+
   return (
     <PageTransition>
       <div className="portfolio-page">
@@ -66,7 +70,9 @@ const Portfolio = () => {
         <section className="portfolio-cta">
           <div className="container text-center">
             <h2 className="section-title">Your outcome is next.</h2>
-            <button className="btn btn-primary">Start the Diagnostic</button>
+            <button className="btn btn-primary" onClick={() => navigate('/contact')}>
+              Start the Diagnostic <ArrowRight size={16} />
+            </button>
           </div>
         </section>
       </div>
