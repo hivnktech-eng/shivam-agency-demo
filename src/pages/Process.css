@@ -84,19 +84,39 @@
     flex-direction: column;
     text-align: center;
     gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
   }
   
   .process-line {
     display: none;
   }
   
+  .step-content h2 {
+    font-size: 1.75rem;
+  }
+
   .step-content p {
     margin: 0 auto;
+    font-size: 1rem;
   }
   
   .number-circle {
     width: 60px;
     height: 60px;
     font-size: 1.5rem;
+  }
+
+  .process-footer {
+    padding: var(--spacing-lg) 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .step-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .step-content p {
+    font-size: 0.9rem;
   }
 }

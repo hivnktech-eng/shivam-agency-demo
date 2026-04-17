@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion as Motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle, ArrowRight } from 'lucide-react';
 import PageTransition from '../components/PageTransition';
 import { agencyData } from '../data/mockData';
 import './Contact.css';

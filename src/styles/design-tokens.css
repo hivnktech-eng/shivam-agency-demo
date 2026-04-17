@@ -30,6 +30,10 @@
   --duration-lg: 0.6s;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -87,5 +91,11 @@ section {
   :root {
     --spacing-xl: 4rem;
     --spacing-xxl: 6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding: var(--spacing-lg) 1rem;
   }
 }
