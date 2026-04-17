@@ -1,0 +1,115 @@
+.portfolio-page {
+  background: var(--bg-color);
+}
+
+.portfolio-hero {
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-md);
+}
+
+.case-studies-list {
+  padding-bottom: var(--spacing-xxl);
+}
+
+.study-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xxl);
+  align-items: center;
+}
+
+.study-visual {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: var(--bg-accent);
+}
+
+.study-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-lg) var(--transition-smooth);
+}
+
+.study-item:hover .study-visual img {
+  transform: scale(1.05);
+}
+
+.study-badge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: var(--text-primary);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.study-content h2 {
+  font-size: 2.5rem;
+  margin: 0.5rem 0 var(--spacing-md);
+}
+
+.study-details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.detail-box h4 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.detail-box p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.study-outcomes {
+  display: flex;
+  gap: var(--spacing-xl);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border);
+}
+
+.outcome-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.outcome-stat .val {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.75rem;
+  color: var(--text-primary);
+}
+
+.outcome-stat .lab {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+.portfolio-cta {
+  padding: var(--spacing-xxl) 0;
+  background: var(--white);
+}
+
+@media (max-width: 992px) {
+  .study-item {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+}
